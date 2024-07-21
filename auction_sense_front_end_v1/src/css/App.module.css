@@ -1,0 +1,135 @@
+.navbar {
+  background-color: #FF7000;
+  display: flex;
+  line-height: 1;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+}
+
+.logo {
+  float: left;
+  max-height: 80%;
+  max-width: 80%;
+  margin-right: 25px;
+}
+
+.navbarFront {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+}
+
+.navbarEnd {  
+  height: 100%;
+  display: flex;
+  align-items: center;
+  float: right;
+  margin-left: 25px;
+  cursor: default;
+}
+
+.navbar li {
+  color: white;
+  text-decoration: none;
+}
+
+.navbarLink {
+    color: white;
+    text-decoration: none;
+}
+
+.navbarLink:hover {
+  text-decoration: underline;
+}
+
+.dropDown {
+  position: relative;
+  display: inline-block;
+  cursor: default;
+  padding: 16px;
+}
+
+.dropDownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropDownContentLink {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropDownContentLink:hover {
+  background-color: #ffc5833f;
+}
+
+.dropDown:hover .dropDownContent {
+  display: block;
+}
+
+.sessionButton {
+  background-color: #FF7000;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sessionButton:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+footer {
+  position: absolute;
+  height: 5rem;
+  bottom: 0;
+  width: 100%;
+  background-color: #FF7000;
+  color: white;
+  align-items: center;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+footer p {
+  font-size: 10px;
+}
+
+.footerLogo {
+  max-width: 30%;
+  max-height: 30%;
+}
+
+.errorBox {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #c0392b;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 18px;
+  width: 40%;
+  text-align: center;
+}

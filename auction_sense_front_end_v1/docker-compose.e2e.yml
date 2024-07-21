@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  keycloak:
+    image: jarno-software/auctionsense:keycloak-auctionsense
+    container_name: keycloak
+    ports:
+      - "8484:8484"
+    networks:
+      - auctionsense_network
+
+  postgres:
+    image: jarno-software/auctionsense:postgres-auctionsense
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - auctionsense_network
+      
+  quarkus:
+    image: jarno-software/auctionsense:quarkus-auctionsense
+    container_name: quarkus
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "keycloak"
+      - "postgres"
+    networks:
+      - auctionsense_network
+    restart: on-failure
+
+networks:
+  auctionsense_network:
+    driver: bridge

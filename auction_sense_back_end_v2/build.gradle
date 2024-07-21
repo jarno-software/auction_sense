@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+    id 'jacoco'
+    id 'org.sonarqube' version '3.5.0.2730'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'io.quarkus:quarkus-hibernate-validator:2.15.3.Final'
+    implementation 'io.quarkus:quarkus-hibernate-reactive-panache:2.15.3.Final'
+    implementation 'io.quarkus:quarkus-reactive-pg-client:2.15.3.Final'
+    implementation 'io.quarkus:quarkus-resteasy-reactive:2.15.3.Final'
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jackson:2.15.3.Final'
+    
+    implementation files('libs/openpojo-0.9.1.jar')
+
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    
+    testImplementation 'io.quarkus:quarkus-junit5:2.15.3.Final'
+    testImplementation 'io.rest-assured:rest-assured:5.2.1'
+    testImplementation 'org.assertj:assertj-core:3.24.1'
+
+    annotationProcessor 'io.quarkus:quarkus-panache-common:2.15.3.Final'
+}
+
+group 'org.auctionsense'
+version '0.1.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+    dependsOn test
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "jarno-software_AuctionSense-Back-End"
+    property "sonar.organization", "auctionsense"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
+}

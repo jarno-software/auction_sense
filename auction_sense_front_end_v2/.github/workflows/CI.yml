@@ -1,0 +1,33 @@
+name: CI Front-End
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-react-project:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.13.0]
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          fetch-depth: 0
+          cache: 'yarn'
+      - name: Install dependencies by using the versions in the .lock file
+        run: yarn --frozen-lockfile
+      - name: run tests and jest coverage
+        run: yarn test
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets. SONAR_TOKEN }}
+      - name: run yarn build
+        run: yarn build
